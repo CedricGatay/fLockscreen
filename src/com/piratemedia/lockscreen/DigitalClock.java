@@ -83,16 +83,18 @@ public class DigitalClock extends TextView {
          * requests a tick on the next hard-second boundary
          */
         mTicker = new Runnable() {
-                public void run() {
-                    if (mTickerStopped) return;
-                    mCalendar.setTimeInMillis(System.currentTimeMillis());
-                    setText(DateFormat.format(mFormat, mCalendar));
-                    invalidate();
-                    long now = SystemClock.uptimeMillis();
-                    long next = now + (1000 - now % 1000);
-                    mHandler.postAtTime(mTicker, next);
+            public void run() {
+                if (mTickerStopped) {
+                    return;
                 }
-            };
+                mCalendar.setTimeInMillis(System.currentTimeMillis());
+                setText(DateFormat.format(mFormat, mCalendar));
+                invalidate();
+                long now = SystemClock.uptimeMillis();
+                long next = now + (1000 - now % 1000);
+                mHandler.postAtTime(mTicker, next);
+            }
+        };
         mTicker.run();
     }
 

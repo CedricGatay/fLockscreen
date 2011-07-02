@@ -3,8 +3,8 @@ package com.piratemedia.lockscreen;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.graphics.Rect;
 import android.graphics.Paint.Align;
+import android.graphics.Rect;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.View;
@@ -30,15 +30,19 @@ public class RotateView extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RotateView);
 
         CharSequence s = a.getString(R.styleable.RotateView_text);
-        if (s != null) setText(s.toString());
+        if (s != null) {
+            setText(s.toString());
+        }
 
         setTextColor(a.getColor(R.styleable.RotateView_textColor, 0xFF000000));
 
         int textSize = a.getDimensionPixelOffset(R.styleable.RotateView_textSize, 0);
-        if (textSize > 0) setTextSize(textSize);
+        if (textSize > 0) {
+            setTextSize(textSize);
+        }
 
         rotateVal = a.getInt(R.styleable.RotateView_rotate, 90);
-        
+
         a.recycle();
     }
 
@@ -122,7 +126,7 @@ public class RotateView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float text_horizontally_centered_origin_x = getPaddingLeft() + text_bounds.width()/2f;
+        float text_horizontally_centered_origin_x = getPaddingLeft() + text_bounds.width() / 2f;
         float text_horizontally_centered_origin_y = getPaddingTop() - mAscent - getPaddingBottom();
 
         canvas.translate(text_horizontally_centered_origin_y, text_horizontally_centered_origin_x);

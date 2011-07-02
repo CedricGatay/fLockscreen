@@ -23,11 +23,11 @@ public class DialogSeekBarPreference extends DialogPreference implements
     public DialogSeekBarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
         setPersistent(true);
-        
+
         mSuffix = attrs.getAttributeValue(androidns, "text");
         mMin = attrs.getAttributeIntValue(androidns, "min", 0);
         mMax = attrs.getAttributeIntValue(androidns, "max", 100);
-        
+
         setDialogLayoutResource(R.layout.my_seekbar_preference);
     }
 
@@ -36,14 +36,14 @@ public class DialogSeekBarPreference extends DialogPreference implements
         super.onBindDialogView(v);
         TextView dialogMessage = (TextView) v.findViewById(R.id.dialogMessage);
         dialogMessage.setText(getDialogMessage());
-        
+
         mValueText = (TextView) v.findViewById(R.id.actualValue);
-        
+
         mSeekBar = (SeekBar) v.findViewById(R.id.myBar);
         mSeekBar.setOnSeekBarChangeListener(this);
         mSeekBar.setMax(mMax);
         mSeekBar.setProgress(mValue);
-        
+
         String t = String.valueOf(mValue + mMin);
         mValueText.setText(mSuffix == null ? t : t.concat(mSuffix));
     }
